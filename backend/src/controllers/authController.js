@@ -6,21 +6,17 @@ exports.signup = async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
 
-    // Email format validation
+    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: "Invalid email format" });
     }
-
-    // Password strength validation (min 6 chars, at least 1 number)
     if (password.length < 6) {
       return res.status(400).json({ message: "Password must be at least 6 characters" });
     }
     if (!/\d/.test(password)) {
       return res.status(400).json({ message: "Password must contain at least one number" });
     }
-
-    // Check if user exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email already registered" });
@@ -39,8 +35,6 @@ exports.signup = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
-
-    // Update last login
     user.lastLogin = new Date();
     await user.save();
 
@@ -65,8 +59,6 @@ exports.login = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid credentials" });
-
-    // Check if user is active
     if (user.status !== "active") {
       return res.status(401).json({ message: "Account is inactive. Contact administrator." });
     }
@@ -97,8 +89,6 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
-
-// NEW: Get current user
 exports.getCurrentUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -109,9 +99,6 @@ exports.getCurrentUser = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
-
-// NEW: Logout
 exports.logout = (req, res) => {
-  // In JWT, logout is client-side (remove token)
   res.json({ message: "Logged out successfully" });
 };
