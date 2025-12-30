@@ -1,7 +1,4 @@
-// Mock mongoose connection
 const mongoose = require('mongoose');
-
-// Mock mongoose methods
 mongoose.connect = jest.fn().mockResolvedValue({});
 mongoose.disconnect = jest.fn().mockResolvedValue({});
 mongoose.connection = {
