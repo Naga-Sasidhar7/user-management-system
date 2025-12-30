@@ -1,9 +1,8 @@
-// src/components/Dashboard/UserProfile.js - COMPLETE FIXED VERSION
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import './UserProfile.css'; // Make sure this CSS file exists
+import './UserProfile.css'; 
 
 const UserProfile = () => {
   const { user, logout } = useAuth();
@@ -48,14 +47,10 @@ const UserProfile = () => {
     setLoading(true);
     
     try {
-      // Update localStorage for demo
       const updatedUser = { ...user, ...formData };
       localStorage.setItem('user', JSON.stringify(updatedUser));
-      
       toast.success('Profile updated successfully!');
       setIsEditing(false);
-      
-      // Reload to update context
       setTimeout(() => {
         window.location.reload();
       }, 1000);
@@ -122,7 +117,7 @@ const UserProfile = () => {
         </div>
 
         <div className="profile-grid">
-          {/* Left Column - Profile Information */}
+          
           <div className="profile-left">
             <div className="profile-card">
               <div className="card-header">
@@ -213,7 +208,7 @@ const UserProfile = () => {
             </div>
           </div>
 
-          {/* Right Column - Password & Actions */}
+         
           <div className="profile-right">
             <div className="profile-card">
               <h2 className="card-title">Change Password</h2>
