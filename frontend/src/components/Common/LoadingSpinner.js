@@ -1,4 +1,3 @@
-// src/components/Common/LoadingSpinner.js
 import React from 'react';
 
 const LoadingSpinner = ({ size = 40, color = '#3498db' }) => {
@@ -35,7 +34,6 @@ const styles = {
   }
 };
 
-// Add CSS animation
 const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(`
   @keyframes spin {
