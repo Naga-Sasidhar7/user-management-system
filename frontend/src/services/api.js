@@ -1,14 +1,10 @@
-// src/services/api.js - CREATE THIS FILE
 const API_URL = 'http://localhost:5000/api';
-
-// Get auth token from localStorage
 const getAuthHeader = () => {
   const token = localStorage.getItem('token');
   return token ? { 'Authorization': `Bearer ${token}` } : {};
 };
 
 export const userAPI = {
-  // Get all users (admin only)
   getUsers: async () => {
     try {
       const response = await fetch(`${API_URL}/users`, {
@@ -21,7 +17,6 @@ export const userAPI = {
       if (response.ok) {
         return await response.json();
       } else {
-        // Fallback to demo data
         console.warn('Backend failed, using demo users');
         return getDemoUsers();
       }
@@ -30,8 +25,6 @@ export const userAPI = {
       return getDemoUsers();
     }
   },
-
-  // Update user (admin only)
   updateUser: async (userId, userData) => {
     try {
       const response = await fetch(`${API_URL}/users/${userId}`, {
@@ -50,12 +43,10 @@ export const userAPI = {
       }
     } catch (error) {
       console.warn('Backend update failed:', error.message);
-      // In demo mode, we just return the updated data
       return { success: true, user: { id: userId, ...userData } };
     }
   },
 
-  // Delete user (admin only)
   deleteUser: async (userId) => {
     try {
       const response = await fetch(`${API_URL}/users/${userId}`, {
@@ -70,13 +61,10 @@ export const userAPI = {
       }
     } catch (error) {
       console.warn('Backend delete failed:', error.message);
-      // In demo mode, we just return success
       return { success: true };
     }
   }
 };
-
-// Demo fallback data
 const getDemoUsers = () => {
   return [
     {
