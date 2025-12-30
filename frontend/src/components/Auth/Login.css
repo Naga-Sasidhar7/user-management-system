@@ -67,7 +67,7 @@ label {
 
 .input-container input {
     width: 100%;
-    padding: 14px 15px 14px 45px !important; /* Force padding with !important */
+    padding: 14px 15px 14px 45px !important; 
     border: 1.5px solid #cbd5e1;
     border-radius: 8px;
     font-size: 16px;
