@@ -2,7 +2,6 @@ import api from './api';
 import toast from 'react-hot-toast';
 
 export const authService = {
-  // Login user
   login: async (email, password) => {
     try {
       const response = await api.post('/auth/login', { email, password });
@@ -18,7 +17,6 @@ export const authService = {
     }
   },
 
-  // Register user
   register: async (userData) => {
     try {
       const response = await api.post('/auth/signup', userData);
@@ -29,29 +27,21 @@ export const authService = {
     }
   },
 
-  // Get current user
   getCurrentUser: () => {
     const userStr = localStorage.getItem('user');
     return userStr ? JSON.parse(userStr) : null;
   },
-
-  // Get token
   getToken: () => {
     return localStorage.getItem('token');
   },
-
-  // Check if authenticated
   isAuthenticated: () => {
     return !!localStorage.getItem('token');
   },
 
-  // Check if user is admin
   isAdmin: () => {
     const user = authService.getCurrentUser();
     return user?.role === 'admin';
   },
-
-  // Logout
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
