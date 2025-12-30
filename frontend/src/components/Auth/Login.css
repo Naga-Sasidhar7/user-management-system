@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.login-container {
+    max-width: 420px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.login-header {
+    background: linear-gradient(to right, #4f46e5, #7c3aed);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.login-header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    opacity: 0.9;
+    font-size: 15px;
+}
+
+.login-form {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.input-container i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    z-index: 1;
+    width: 20px;
+    text-align: center;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 14px 15px 14px 45px !important; /* Force padding with !important */
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.2s;
+    background-color: white;
+    position: relative;
+    z-index: 0;
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.input-container input::placeholder {
+    color: #94a3b8;
+    opacity: 0.8;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(to right, #4f46e5, #7c3aed);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.btn-login:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(79, 70, 229, 0.2);
+}
+
+.btn-login:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-login:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.demo-section {
+    margin-top: 32px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #4f46e5;
+}
+
+.demo-title {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 16px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.demo-title i {
+    margin-right: 10px;
+    color: #4f46e5;
+}
+
+.demo-account {
+    background-color: white;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.demo-account:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.demo-account:last-child {
+    margin-bottom: 0;
+}
+
+.account-type {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.account-credentials {
+    color: #64748b;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.any-demo {
+    margin-top: 15px;
+    padding: 12px 15px;
+    background-color: #e0e7ff;
+    border-radius: 6px;
+    border: 1px dashed #a5b4fc;
+    color: #4f46e5;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.any-demo:hover {
+    background-color: #c7d2fe;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 25px;
+    padding: 20px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 15px;
+    color: #64748b;
+}
+
+.register-link a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.copy-btn {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #475569;
+    transition: all 0.2s;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.copy-btn:hover {
+    background-color: #e2e8f0;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        margin: 20px;
+        max-width: calc(100% - 40px);
+    }
+    
+    .login-form {
+        padding: 25px 20px;
+    }
+    
+    .login-header {
+        padding: 25px 15px;
+    }
+    
+    .copy-btn {
+        position: relative;
+        right: 0;
+        top: 0;
+        transform: none;
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    .demo-account {
+        padding-bottom: 50px;
+    }
+}
