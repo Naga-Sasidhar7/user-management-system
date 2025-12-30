@@ -1,4 +1,3 @@
-// Minimal test file that will definitely work
 test('Test 1: 1 + 1 = 2', () => {
   expect(1 + 1).toBe(2);
 });
@@ -20,8 +19,6 @@ test('Test 5: Boolean logic', () => {
   expect(true).toBeTruthy();
   expect(false).toBeFalsy();
 });
-
-// Bonus tests
 test('Test 6: Async test', async () => {
   const result = await Promise.resolve('success');
   expect(result).toBe('success');
