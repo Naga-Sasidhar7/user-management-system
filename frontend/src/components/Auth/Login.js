@@ -24,17 +24,14 @@ const Login = () => {
         
         try {
             console.log('Calling login function...');
-            // Call the login function from AuthContext
             const user = await login(email, password);
             console.log('Login successful, user:', user);
             
             if (user) {
                 console.log('User authenticated, redirecting...');
                 console.log('User role:', user.role);
-                
-                // Wait a moment for state to update
                 setTimeout(() => {
-                    // Use window.location for guaranteed redirect
+                   
                     if (user.role === 'admin') {
                         console.log('Redirecting to /admin');
                         window.location.href = '/admin';
