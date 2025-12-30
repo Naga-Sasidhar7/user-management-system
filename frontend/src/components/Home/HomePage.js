@@ -1,12 +1,9 @@
-// src/components/Home/HomePage.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const HomePage = () => {
   const { user } = useAuth();
-
-  // If user is logged in, redirect to appropriate dashboard
   if (user) {
     if (user.role === 'admin') {
       window.location.href = '/admin';
