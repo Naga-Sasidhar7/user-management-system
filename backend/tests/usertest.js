@@ -7,10 +7,7 @@ describe('User Management API Tests', () => {
   let adminToken, userToken, adminId, userId;
 
   beforeEach(async () => {
-    // Clear users
     await User.deleteMany({});
-
-    // Create admin user
     const admin = await User.create({
       fullName: 'Admin User',
       email: 'admin@example.com',
@@ -23,8 +20,6 @@ describe('User Management API Tests', () => {
       { id: adminId, role: 'admin' },
       process.env.JWT_SECRET || 'test-secret'
     );
-
-    // Create regular user
     const user = await User.create({
       fullName: 'Regular User',
       email: 'user@example.com',
@@ -41,7 +36,6 @@ describe('User Management API Tests', () => {
 
   describe('GET /api/users (Admin only)', () => {
     test('should get all users with pagination (admin)', async () => {
-      // Create more users for pagination
       for (let i = 1; i <= 15; i++) {
         await User.create({
           fullName: `User ${i}`,
@@ -58,7 +52,7 @@ describe('User Management API Tests', () => {
 
       expect(response.body).toHaveProperty('users');
       expect(response.body).toHaveProperty('pagination');
-      expect(response.body.users).toHaveLength(10); // 10 per page
+      expect(response.body.users).toHaveLength(10); 
       expect(response.body.pagination.page).toBe(1);
       expect(response.body.pagination.limit).toBe(10);
       expect(response.body.pagination.total).toBeGreaterThan(15);
@@ -67,7 +61,7 @@ describe('User Management API Tests', () => {
     test('should reject non-admin users', async () => {
       const response = await request(app)
         .get('/api/users')
-        .set('Authorization', `Bearer ${userToken}`) // Regular user token
+        .set('Authorization', `Bearer ${userToken}`) 
         .expect(403);
 
       expect(response.body.message).toContain('Admin access only');
@@ -118,7 +112,6 @@ describe('User Management API Tests', () => {
     });
 
     test('should reject duplicate email', async () => {
-      // Try to update with admin's email
       const response = await request(app)
         .put('/api/users/profile')
         .set('Authorization', `Bearer ${userToken}`)
@@ -131,14 +124,12 @@ describe('User Management API Tests', () => {
 
   describe('PUT /api/users/change-password', () => {
     test('should change password with correct current password', async () => {
-      // Note: This requires actual bcrypt comparison
       console.log('Password change test requires bcrypt setup');
     });
   });
 
   describe('PATCH /api/users/:id/status (Admin only)', () => {
     test('should activate user (admin)', async () => {
-      // Create an inactive user
       const inactiveUser = await User.create({
         fullName: 'Inactive User',
         email: 'inactive@example.com',
@@ -152,8 +143,6 @@ describe('User Management API Tests', () => {
         .expect(200);
 
       expect(response.body.message).toContain('activated');
-      
-      // Verify in database
       const updatedUser = await User.findById(inactiveUser._id);
       expect(updatedUser.status).toBe('active');
     });
