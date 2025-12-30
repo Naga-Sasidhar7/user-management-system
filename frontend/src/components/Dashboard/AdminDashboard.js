@@ -11,7 +11,6 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is admin
     if (user && user.role !== 'admin') {
       toast.error('Access denied. Admin only.');
       navigate('/profile');
@@ -33,7 +32,7 @@ const AdminDashboard = () => {
   }
 
   if (!user || user.role !== 'admin') {
-    return null; // Will redirect in useEffect
+    return null; 
   }
 
   return (
@@ -60,14 +59,14 @@ const AdminDashboard = () => {
           </div>
         </div>
         
-        {/* User Table Component */}
+      
         <UserTable />
       </div>
     </div>
   );
 };
 
-// In AdminDashboard.js, update the styles:
+
 
 const styles = {
   container: {
