@@ -14,8 +14,6 @@ exports.getProfile = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const { fullName, email } = req.body;
-    
-    // Check if email is being changed and if it already exists
     if (email) {
       const existingUser = await User.findOne({ email, _id: { $ne: req.user.id } });
       if (existingUser) {
@@ -38,17 +36,11 @@ exports.updateProfile = async (req, res) => {
 exports.changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
-
-    // Get user with password
     const user = await User.findById(req.user.id);
-    
-    // Verify current password
     const isValid = await bcrypt.compare(currentPassword, user.password);
     if (!isValid) {
       return res.status(400).json({ message: "Current password is incorrect" });
     }
-
-    // Validate new password
     if (newPassword.length < 6) {
       return res.status(400).json({ message: "Password must be at least 6 characters" });
     }
@@ -64,7 +56,6 @@ exports.changePassword = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
   try {
-    // Pagination
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
