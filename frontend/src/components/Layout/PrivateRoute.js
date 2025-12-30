@@ -1,11 +1,8 @@
-// src/components/Layout/PrivateRoute.js - FINAL VERSION
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const PrivateRoute = ({ children, adminOnly = false }) => {
   const { user, loading } = useAuth();
-  
-  // Show loading while checking auth
   if (loading) {
     return (
       <div style={styles.loading}>
@@ -14,18 +11,12 @@ const PrivateRoute = ({ children, adminOnly = false }) => {
       </div>
     );
   }
-  
-  // Redirect to login if no user
   if (!user) {
     return <Navigate to="/login" />;
   }
-  
-  // Redirect non-admins from admin routes
   if (adminOnly && user.role !== 'admin') {
     return <Navigate to="/profile" />;
   }
-  
-  // Allow access
   return children;
 };
 
@@ -49,7 +40,6 @@ const styles = {
   }
 };
 
-// Add CSS animation
 const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(`
   @keyframes spin {
