@@ -16,8 +16,6 @@ const Register = () => {
     
     const { register } = useAuth();
     const navigate = useNavigate();
-
-    // Check password strength
     const checkPasswordStrength = (password) => {
         if (!password) return '';
         
@@ -71,8 +69,7 @@ const Register = () => {
                 email: formData.email.trim().toLowerCase(),
                 password: formData.password
             });
-            
-            // Redirect to login after successful registration
+
             navigate('/login', { 
                 state: { 
                     message: 'Registration successful! Please login with your credentials.' 
