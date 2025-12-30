@@ -9,7 +9,7 @@ const UserTable = () => {
   const [editForm, setEditForm] = useState({
     role: '',
     status: ''
-  }};
+  });
   const demoUsers = [
     {
       id: '1',
