@@ -9,9 +9,7 @@ const UserTable = () => {
   const [editForm, setEditForm] = useState({
     role: '',
     status: ''
-  });
-
-  // Demo users data
+  }}
   const demoUsers = [
     {
       id: '1',
@@ -48,14 +46,11 @@ const UserTable = () => {
   ];
 
   useEffect(() => {
-    // Simulate API call
     setTimeout(() => {
       setUsers(demoUsers);
       setLoading(false);
     }, 500);
   }, []);
-
-  // Handle edit
   const handleEdit = (user) => {
     setEditingUser(user);
     setEditForm({
@@ -63,8 +58,6 @@ const UserTable = () => {
       status: user.status
     });
   };
-
-  // Save edit
   const handleSaveEdit = () => {
     if (!editingUser) return;
     
@@ -79,7 +72,6 @@ const UserTable = () => {
     toast.success('User updated successfully!');
   };
 
-  // Handle delete
   const handleDelete = (userId) => {
     if (userId === '1') {
       toast.error('Cannot delete admin user!');
@@ -93,7 +85,6 @@ const UserTable = () => {
     }
   };
 
-  // Filter users based on search
   const filteredUsers = users.filter(user =>
     user.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -395,7 +386,6 @@ const styles = {
   }
 };
 
-// Add CSS animation for spinner
 const styleSheet = document.styleSheets[0];
 const keyframes = `
   @keyframes spin {
