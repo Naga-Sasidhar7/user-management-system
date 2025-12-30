@@ -26,7 +26,6 @@ describe('Authentication API Tests', () => {
     });
 
     test('should reject registration with existing email', async () => {
-      // First, create a user
       await User.create({
         fullName: 'Existing User',
         email: 'existing@example.com',
@@ -37,7 +36,7 @@ describe('Authentication API Tests', () => {
         .post('/api/auth/signup')
         .send({
           fullName: 'New User',
-          email: 'existing@example.com', // Same email
+          email: 'existing@example.com', 
           password: 'Password123'
         })
         .expect(400);
@@ -52,7 +51,7 @@ describe('Authentication API Tests', () => {
         .send({
           fullName: 'Test User',
           email: 'test@example.com',
-          password: '123' // Too short
+          password: '123' 
         })
         .expect(400);
 
@@ -76,7 +75,6 @@ describe('Authentication API Tests', () => {
       const response = await request(app)
         .post('/api/auth/signup')
         .send({
-          // Missing fullName and email
           password: 'Password123'
         })
         .expect(400);
@@ -85,11 +83,10 @@ describe('Authentication API Tests', () => {
 
   describe('POST /api/auth/login', () => {
     beforeEach(async () => {
-      // Create a user for login tests
       await User.create({
         fullName: 'Login User',
         email: 'login@example.com',
-        password: '$2b$10$X3H3pR6L6eTp3LdYQ1ZQ.Op5W5j5K5J5K5J5K5J5K5J5K5J5K5J5K', // Hash of 'Password123'
+        password: '$2b$10$X3H3pR6L6eTp3LdYQ1ZQ.Op5W5j5K5J5K5J5K5J5K5J5K5J5K5J5K', // 
         role: 'user',
         status: 'active'
       });
@@ -134,11 +131,10 @@ describe('Authentication API Tests', () => {
     });
 
     test('should reject login for inactive account', async () => {
-      // Create inactive user
       await User.create({
         fullName: 'Inactive User',
         email: 'inactive@example.com',
-        password: '$2b$10$...', // Hashed password
+        password: '$2b$10$...', 
         status: 'inactive'
       });
 
@@ -158,7 +154,6 @@ describe('Authentication API Tests', () => {
     let authToken;
 
     beforeEach(async () => {
-      // Create user and get token
       const user = await User.create({
         fullName: 'Test User',
         email: 'me@example.com',
@@ -166,13 +161,12 @@ describe('Authentication API Tests', () => {
         role: 'user'
       });
 
-      // Simulate login to get token (in real scenario, use login endpoint)
-      authToken = 'test-jwt-token'; // In real test, generate actual JWT
+      
+      authToken = 'test-jwt-token'; 
     });
 
     test('should get current user with valid token', async () => {
-      // Note: This test requires proper JWT setup
-      // For now, we'll skip or mock
+      
       console.log('GET /api/auth/me test requires JWT setup');
     });
 
